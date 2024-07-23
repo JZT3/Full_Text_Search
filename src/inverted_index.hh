@@ -8,13 +8,13 @@
 
 class InvertedIndex {
 private:
-    std::unordered_map<std::string, std::set<int>> index;
+  std::unordered_map<std::string, std::set<int>> index;
 
-    std::set<int> intersect(const std::set<int>& set1, const std::set<int>& set2);
+  std::set<int> intersect(const std::set<int>& set1, const std::set<int>& set2);
 
 public:
-    void addDocument(int docId, const std::string& content);
-    std::vector<int> search(const std::string& query);
+  void addDocument(int docId, const std::string& content);
+  std::vector<int> search(const std::string& query);
 };
 
 #endif
