@@ -5,6 +5,7 @@
 #include <vector>
 #include <set>
 #include <string>
+#include <nlohmann/json.hpp>
 
 class InvertedIndex {
 private:
@@ -15,6 +16,7 @@ private:
 public:
   void addDocument(int docId, const std::string& content);
   std::vector<int> search(const std::string& query);
+  void indexJsonFile(const std::string& filename);
 };
 
 #endif

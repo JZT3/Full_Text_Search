@@ -37,3 +37,25 @@ std::set<int> InvertedIndex::intersect(const std::set<int>& set1, const std::set
                         std::inserter(result, result.begin()));
     return result;
 }
+
+void InvertedIndex::indexJsonFile(const std::string& filename) {
+    std::ifstream file(filename);
+    if (!file.is_open()) {
+        std::cerr << "Error opening file: " << filename << std::endl;
+        return;
+    }
+
+    nlohmann::json jsonData;
+    try {
+        file >> jsonData;
+    } catch (nlohmann::json::parse_error& e) {
+        std::cerr << "JSON parse error: " << e.what() << std::endl;
+        return;
+    }
+
+    for (const auto& [key, value] : jsonData.items()) {
+        if (value.is_string()) {
+            addDocument(std::stoi(key), value.get<std::string>());
+        }
+    }
+}
